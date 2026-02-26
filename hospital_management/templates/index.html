@@ -1,0 +1,214 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<style>
+
+/* ================= HERO SECTION ================= */
+.hero-banner {
+    background: linear-gradient(rgba(13,71,161,0.7), rgba(25,118,210,0.7)),
+                url("https://images.unsplash.com/photo-1576091160550-2173dba999ef") center/cover no-repeat;
+    color: white;
+    padding: 80px 40px;
+    border-radius: 15px;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.hero-banner h2 {
+    font-size: 40px;
+    margin-bottom: 15px;
+}
+
+.hero-banner p {
+    font-size: 18px;
+    margin-bottom: 25px;
+}
+
+.hero-banner a {
+    background: white;
+    color: #1565c0;
+    padding: 12px 25px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 5px;
+    transition: 0.3s;
+}
+
+.hero-banner a:hover {
+    background: #0d47a1;
+    color: white;
+}
+
+/* ================= STATS SECTION ================= */
+.stats {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    margin-bottom: 50px;
+    flex-wrap: wrap;
+}
+
+.stat-box {
+    background: white;
+    padding: 30px;
+    width: 220px;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    margin: 10px;
+}
+
+.stat-box h3 {
+    font-size: 35px;
+    color: #1976d2;
+}
+
+.stat-box p {
+    font-weight: 500;
+    color: #555;
+}
+
+/* ================= CAROUSEL ================= */
+.carousel {
+    position: relative;
+    max-width: 100%;
+    margin-bottom: 50px;
+}
+
+.carousel img {
+    width: 100%;
+    border-radius: 15px;
+    display: none;
+}
+
+.carousel img.active {
+    display: block;
+}
+
+/* ================= DOCTOR GRID ================= */
+.doctor-section h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #0d47a1;
+}
+
+.doctor-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.doctor-card {
+    background: white;
+    width: 250px;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+    transition: 0.3s;
+}
+
+.doctor-card:hover {
+    transform: translateY(-8px);
+}
+
+.doctor-card img {
+    width: 100%;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+</style>
+
+<!-- ================= HERO ================= -->
+<div class="hero-banner">
+    <h2>Welcome to Hospital Management System</h2>
+    <p>Smart healthcare management for patients and doctors.</p>
+    <a href="/book">Book Appointment</a>
+    <a href="/add_patient">Register Patient</a>
+</div>
+
+<!-- ================= STATS ================= -->
+<div class="stats">
+    <div class="stat-box">
+        <h3 id="patients">0</h3>
+        <p>Patients</p>
+    </div>
+    <div class="stat-box">
+        <h3 id="doctors">0</h3>
+        <p>Doctors</p>
+    </div>
+    <div class="stat-box">
+        <h3 id="appointments">0</h3>
+        <p>Appointments</p>
+    </div>
+</div>
+
+<!-- ================= CAROUSEL ================= -->
+<div class="carousel">
+    <img src="https://images.unsplash.com/photo-1584515933487-779824d29309" class="active">
+    <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118">
+    <img src="https://images.unsplash.com/photo-1580281657527-47d53e3e93ab">
+</div>
+
+<!-- ================= DOCTOR GRID ================= -->
+<div class="doctor-section">
+    <h2>Our Specialists</h2>
+    <div class="doctor-grid">
+        <div class="doctor-card">
+            <img src="https://randomuser.me/api/portraits/men/32.jpg">
+            <h4>Dr. Rahul Sharma</h4>
+            <p>Cardiologist</p>
+        </div>
+
+        <div class="doctor-card">
+            <img src="https://randomuser.me/api/portraits/women/44.jpg">
+            <h4>Dr. Priya Mehta</h4>
+            <p>Neurologist</p>
+        </div>
+
+        <div class="doctor-card">
+            <img src="https://randomuser.me/api/portraits/men/52.jpg">
+            <h4>Dr. Arjun Rao</h4>
+            <p>Orthopedic</p>
+        </div>
+    </div>
+</div>
+
+<!-- ================= JAVASCRIPT ================= -->
+<script>
+/* Animated Counter */
+function animateValue(id, start, end, duration) {
+    let range = end - start;
+    let current = start;
+    let increment = end > start ? 1 : -1;
+    let stepTime = Math.abs(Math.floor(duration / range));
+    let obj = document.getElementById(id);
+
+    let timer = setInterval(function() {
+        current += increment;
+        obj.innerHTML = current;
+        if (current == end) {
+            clearInterval(timer);
+        }
+    }, stepTime);
+}
+
+animateValue("patients", 0, 120, 2000);
+animateValue("doctors", 0, 35, 2000);
+animateValue("appointments", 0, 250, 2000);
+
+/* Simple Carousel */
+let slides = document.querySelectorAll(".carousel img");
+let index = 0;
+
+setInterval(() => {
+    slides[index].classList.remove("active");
+    index = (index + 1) % slides.length;
+    slides[index].classList.add("active");
+}, 3000);
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+body {
+    font-family: Arial;
+    margin: 40px;
+    background-color: #f2f6fc;
+}
+
+h1 {
+    color: darkblue;
+}
+
+nav a {
+    margin-right: 15px;
+    text-decoration: none;
+    font-weight: bold;
+    color: darkgreen;
+}
+
+form input, select {
+    margin: 5px;
+    padding: 5px;
+}
