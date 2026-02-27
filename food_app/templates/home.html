@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h1>Choose Your Restaurant</h1>
+
+{% for r in restaurants %}
+<div class="card">
+    <h2>{{ r.name }}</h2>
+    <p>Location: {{ r.location }}</p>
+    <a href="/menu/{{ r.restaurant_id }}">
+        <button>View Menu</button>
+    </a>
+</div>
+{% endfor %}
+
+{% endblock %}
